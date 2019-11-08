@@ -9,6 +9,7 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.web.reactive.function.server.router
 import java.nio.file.Path
+import java.nio.file.Paths
 
 @ConfigurationProperties("bert")
 @ConstructorBinding
@@ -21,7 +22,7 @@ data class BertModelProps(
 class BertWebfluxApplication {
     @Bean
     fun bert(bertModelProps: BertModelProps): Bert {
-        return Bert.load(Path.of(bertModelProps.path))
+        return Bert.load(Paths.get(bertModelProps.path))
     }
 
     @Bean
